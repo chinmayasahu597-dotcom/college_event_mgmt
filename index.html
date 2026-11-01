@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Events</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Campus Events home">
+      <span class="brand-icon">CE</span>
+      <span>Campus Events</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <button class="nav-link active" data-page="discover">Discover events</button>
+      <button class="nav-link" data-page="organizer">Organizer</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="discover-page" class="page">
+      <div class="hero">
+        <p class="eyebrow">YOUR CAMPUS, YOUR CALENDAR</p>
+        <h1>Find something<br><span>worth showing up for.</span></h1>
+        <p class="hero-copy">Workshops, games, music and more — all happening around campus.</p>
+        <a class="button button-light" href="#event-list">Explore events <span aria-hidden="true">↓</span></a>
+        <div class="hero-sticker" aria-hidden="true">GOOD<br>THINGS<br>HAPPEN<br>HERE <span>✳</span></div>
+      </div>
+
+      <section id="event-list" class="content-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">MAKE A PLAN</p>
+            <h2>Upcoming events</h2>
+          </div>
+          <span id="event-total" class="event-total"></span>
+        </div>
+
+        <div class="filters">
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="search-input" type="search" placeholder="Search events..." aria-label="Search events">
+          </label>
+          <label class="select-box">
+            <span class="sr-only">Filter by category</span>
+            <select id="category-filter">
+              <option value="All">All categories</option>
+              <option>Technical</option>
+              <option>Cultural</option>
+              <option>Sports</option>
+              <option>Workshop</option>
+              <option>Other</option>
+            </select>
+          </label>
+        </div>
+
+        <div id="events-grid" class="events-grid"></div>
+        <p id="empty-events" class="empty-state" hidden>No events found. Try another search.</p>
+      </section>
+    </section>
+
+    <section id="organizer-page" class="page" hidden>
+      <div class="organizer-banner">
+        <div>
+          <p class="eyebrow">FOR THE PEOPLE WHO MAKE IT HAPPEN</p>
+          <h1>Organizer dashboard</h1>
+          <p>Add events and keep track of who's coming.</p>
+        </div>
+        <span class="banner-doodle" aria-hidden="true">✳</span>
+      </div>
+
+      <section class="content-section organizer-content">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">EVENTS AT A GLANCE</p>
+            <h2>Manage your events</h2>
+          </div>
+          <button id="new-event-button" class="button button-dark">＋ New event</button>
+        </div>
+
+        <form id="event-form" class="event-form" hidden>
+          <div class="form-heading">
+            <h3 id="form-title">Create an event</h3>
+            <button type="button" id="cancel-edit" class="text-button">Cancel</button>
+          </div>
+          <input type="hidden" id="event-id">
+          <div class="form-grid">
+            <label>Event name<input name="name" required maxlength="100" placeholder="e.g. Coding meetup"></label>
+            <label>Category
+              <select name="category" required>
+                <option value="">Choose one</option>
+                <option>Technical</option>
+                <option>Cultural</option>
+                <option>Sports</option>
+                <option>Workshop</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>Date<input name="event_date" type="date" required></label>
+            <label>Time<input name="event_time" type="time" required></label>
+            <label>Venue<input name="venue" required placeholder="e.g. Seminar Hall"></label>
+            <label>Organizer / club<input name="organizer" required placeholder="e.g. Coding Club"></label>
+            <label class="wide-field">Description<textarea name="description" rows="3" required placeholder="What is the event about?"></textarea></label>
+          </div>
+          <button class="button button-dark" type="submit">Save event</button>
+        </form>
+
+        <div id="dashboard-list" class="dashboard-list"></div>
+        <p id="empty-dashboard" class="empty-state" hidden>No events yet. Create your first one!</p>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="registration-dialog" class="registration-dialog">
+    <form id="registration-form">
+      <div class="form-heading">
+        <div>
+          <p class="eyebrow">SAVE YOUR SPOT</p>
+          <h2 id="registration-title">Register for event</h2>
+        </div>
+        <button type="button" id="close-registration" class="close-button" aria-label="Close">×</button>
+      </div>
+      <input type="hidden" id="registration-event-id">
+      <label>Your name<input name="student_name" required maxlength="100" placeholder="Full name"></label>
+      <label>College email<input name="email" type="email" required placeholder="you@college.edu"></label>
+      <label>Department<input name="department" required maxlength="80" placeholder="e.g. Computer Science"></label>
+      <p id="registration-message" class="form-message" role="status"></p>
+      <button class="button button-dark full-width" type="submit">Confirm registration</button>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <footer>Made for campus life <span aria-hidden="true">✳</span></footer>
+  <script src="/app.js"></script>
+</body>
+</html>
