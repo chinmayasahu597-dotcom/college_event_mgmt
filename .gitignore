@@ -1,0 +1,5 @@
+node_modules
+.netlify/*
+!.netlify/results.md
+__pycache__
+college_events.db

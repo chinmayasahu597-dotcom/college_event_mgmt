@@ -10,7 +10,9 @@ async function request(url, options = {}) {
     ...options,
     headers: { "Content-Type": "application/json", ...(options.headers || {}) }
   });
-  const data = await response.json();
+  const data = await response.json().catch(() => {
+    throw new Error("The server returned an unexpected response. Please try again.");
+  });
   if (!response.ok) throw new Error(data.error || "Something went wrong.");
   return data;
 }

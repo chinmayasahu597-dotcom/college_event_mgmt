@@ -155,7 +155,7 @@ class EventHandler(BaseHTTPRequestHandler):
         }
         if path in files:
             filename, content_type = files[path]
-            body = (ROOT / filename).read_bytes()
+            body = (ROOT / "public" / filename).read_bytes()
             self.send_response(200)
             self.send_header("Content-Type", content_type)
             self.send_header("Content-Length", str(len(body)))
